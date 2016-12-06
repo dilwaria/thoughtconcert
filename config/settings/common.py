@@ -100,8 +100,17 @@ MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///thoughtconcert'),
+    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'thoughtconcert',
+        # 'PASSWORD': 'thakurani',
+        'PASSWORD': '1234',
+        'USER':  'root',
+        'HOST': '127.0.0.1',
+    }
 }
+
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
@@ -111,7 +120,7 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'india'
+TIME_ZONE = 'Asia/Kolkata'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
